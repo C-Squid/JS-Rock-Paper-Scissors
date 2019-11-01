@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>Console Rock Paper Scissors</title>
+</head>
+<body>
+  <script>
+  function computerPlay() {
+    let cp = Math.floor(Math.random()*3);
+    if (cp == 0) {
+      return 'Rock';
+    } else if (cp == 1) {
+      return 'Paper';
+    } else {
+      return 'Scissors';
+    }
+  }
+  function playerPlay() {
+  let play=prompt('Rock, Paper or Scissors?');
+    if (play.toUpperCase() == 'ROCK') {
+      return 'Rock';
+    } else if (play.toUpperCase() == 'PAPER') {
+      return 'Paper';
+    } else if (play.toUpperCase() == 'SCISSORS') {
+      return 'Scissors';
+    } else {
+      alert('Invalid Entry! Try again.');
+      playerPlay();
+    }
+  }
+  function playRound(playerSelection, computerSelection) {
+    playerSelection = playerPlay();
+    computerSelection = computerPlay();
+    let ps = playerSelection;
+    let cs = computerSelection;
+    //let userWin = 0;
+    //let userLoss = 0;
+    //let userDraw = 0;
+    if (ps == cs) {
+      return `You threw ${ps} and the computer threw ${cs}. \nIt\'s a draw!`;
+      //userDraw +=1;
+    } else if ((ps == 'Rock' && cs == 'Paper') || (ps == 'Paper' && cs == 'Scissors')
+    || (ps == 'Scissors' && cs == 'Rock')) {
+      return `You threw ${ps} and the computer threw ${cs}. \nYou lose! ${cs} beats ${ps}.`;
+    } else if ((ps == 'Rock' && cs == 'Scissors') || (ps == 'Paper' && cs == 'Rock')
+    || (ps == 'Scissors' && cs == 'Paper')) {
+      return `You threw ${ps} and the computer threw ${cs}. \nYou win! ${ps} beats ${cs}.`;
+    } 
+  } 
+  console.log(playRound());
+  </script>
+</body>
+</html>
