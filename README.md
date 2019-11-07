@@ -3,13 +3,10 @@ JavaScript fxn practice
 
 From The Odin Project's [curriculum](http://www.theodinproject.com/courses/web-development-101/lessons/rock-paper-scissors)
 
-This is the WebDev101 version. 
-I have not yet learned:
-  - for loops,
-  - separate style sheets
-  - console styling
-  - any other of the neat things I saw in other student submissions.
-
-More to come, it seems.
-
 I learned it as Paper Rock Scissors but I'm flexible.
+
+buttons.html includes DOM manipulation and Events. At this point I could not create a loop which allowed the game to be
+played a specified number of times. Instead there is a counter which recognizes when 5 individual games
+have been played.
+
+This feels highly inefficients.
