@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>Console Rock Paper Scissors</title>
+</head>
+<body id='body'>
+  <h1>Rock Paper Scissors Game</h1>
+  <div id ='begin'>
+    <button id ='start'>Let's Play!</button>
+  </div>
+  <div id ='choice'>
+  </div>
+  <br>
+  <div id = 'score'>
+  </div>
+  <script>
+  let body = document.querySelector('#body');
+  let start = document.querySelector('#start');
+  let userDraw = 0;
+  let userWin = 0;
+  let userLoss = 0;
+  let play= '';
+  let begin = document.querySelector('#begin');
+  let score = document.querySelector('#score');
+  let scoreboard;
+  
+  start.addEventListener('click', function() {
+    createInterface();
+    let paper = document.querySelector('#paper');
+    let rock = document.querySelector('#rock');
+    let scissors = document.querySelector('#scissors');
+    let choice = document.querySelector('#choice'); 
+    paper.addEventListener('click', () => play = 'paper');
+    rock.addEventListener('click', () => play = 'rock');
+    scissors.addEventListener('click', () => play = 'scissors');
+    choice.addEventListener('click', () => console.log(playRound()));
+  });
+  
+  
+
+  function createInterface() {
+    body.removeChild(begin);
+    let rbtn = document.createElement('BUTTON');
+    rbtn.setAttribute('id', 'rock');
+    rbtn.textContent = 'Rock';
+    choice.appendChild(rbtn);
+    let pbtn = document.createElement('BUTTON');
+    pbtn.setAttribute('id', 'paper');
+    pbtn.textContent = 'Paper';
+    choice.appendChild(pbtn);
+    let sbtn = document.createElement('BUTTON');
+    sbtn.setAttribute('id', 'scissors');
+    sbtn.textContent = 'Scissors';
+    choice.appendChild(sbtn);
+   
+    scoreboard = document.createElement('p');
+    scoreboard.textContent = `Wins: ${userWin} Losses: ${userLoss} Draws: ${userDraw}`;
+    score.appendChild(scoreboard);  
+  };    
+
+  function updateScore() {
+    score.removeChild(scoreboard);
+    scoreboard = document.createElement('p');
+    scoreboard.textContent = `Wins: ${userWin} Losses: ${userLoss} Draws: ${userDraw}`;
+    score.appendChild(scoreboard);
+    if (userWin + userLoss + userDraw == 5) { 
+      if (userWin == userLoss) {
+        alert('You tied with the computer.');
+      } else if (userWin > userLoss) {
+        alert('You win the game! Hurray!');
+      } else if (userWin < userLoss) {
+        alert('You lost the game. Better luck next time.');
+      } else {
+      };
+    };      
+  };
+
+  function computerPlay() {
+    let cp = Math.floor(Math.random()*3);
+    switch (cp) {
+      case 0:
+        return 'Rock';
+        break;
+      case 1:
+        return 'Paper';
+        break;
+     case 2:
+        return 'Scissors';
+        break;
+    }
+  }
+  function playerPlay() {
+    switch(play) {
+      case 'rock':
+        return 'Rock';
+        break;
+      case 'paper':
+        return 'Paper';
+        break;
+      case 'scissors':
+        return 'Scissors';
+        break;
+    }
+  }
+  function playRound(playerSelection, computerSelection) {
+    playerSelection = playerPlay();
+    computerSelection = computerPlay();
+    let ps = playerSelection;
+    let cs = computerSelection;
+    if (ps == cs) {
+      userDraw += 1;
+      updateScore();
+      return `You threw ${ps} and the computer threw ${cs}. \nIt\'s a draw!`;
+    } else if ((ps == 'Rock' && cs == 'Paper') || (ps == 'Paper' && cs == 'Scissors')
+    || (ps == 'Scissors' && cs == 'Rock')) {
+      userLoss += 1;
+      updateScore();
+      return `You threw ${ps} and the computer threw ${cs}. \nYou lose! ${cs} beats ${ps}.`;
+    } else if ((ps == 'Rock' && cs == 'Scissors') || (ps == 'Paper' && cs == 'Rock')
+    || (ps == 'Scissors' && cs == 'Paper')) {
+      userWin += 1;
+      updateScore();
+      return `You threw ${ps} and the computer threw ${cs}. \nYou win! ${ps} beats ${cs}.`;
+    }
+    updateScore();
+  }
+
+  </script>
+</body>
+</html>
